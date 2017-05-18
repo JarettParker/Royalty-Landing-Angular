@@ -1,3 +1,25 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+  <div style="width:100%;height:40px;display:block"></div>
+  <div style="width:100%;height:60px;text-align:center;">
+    <button
+      (click)="getChecks()"
+      class="btn btn-warning">
+      Fetch Checks
+    </button>
+    <span *ngIf="gotChecks" style="margin-left:10px;color:#999"> Got The Checks</span>
+    <span *ngIf="!gotChecks" style="margin-left:10px;color:#999"> No Checks Yet</span>
+  </div>
+  <div class="sign_up">
+    <form (ngSubmit)="onSignup()" #f="ngForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" ngModel class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" ngModel class="form-control">
+      </div>
+      <button class="btn btn-primary" type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>

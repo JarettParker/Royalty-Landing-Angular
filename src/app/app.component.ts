@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Http, Response } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+
+  gotChecks = false;
+
+  constructor(private http: Http){}
+
+
+  onSignup(form: NgForm){
+    const email = form.value.email;
+    const password = form.value.password;
+  }
+
+  getChecks() {
+    this.http.get('https://royalty-test-backend.firebaseio.com/checks.json')
+      .subscribe(
+        (response:Response) => {
+          console.log(response)
+          this.gotChecks = true;
+        }
+      );
+  }
 }
